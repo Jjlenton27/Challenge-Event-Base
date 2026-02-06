@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Laravel\Fortify\Features;
+use App\Http\Controllers\AIAPIController;
 
 Route::get('/', function () {
     return Inertia::render('welcome', [
@@ -17,5 +18,7 @@ Route::get('dashboard', function () {
 Route::get('askAI', function () {
     return Inertia::render('askAI');
 })->middleware(['auth', 'verified'])->name('askAI');
+
+Route::get('testai', [AIAPIController::class, 'AskAI']);
 
 require __DIR__.'/settings.php';
