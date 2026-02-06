@@ -35,8 +35,8 @@ return [
         ],
     ],
 
-    'openai' => [
-        'key' => env('OPENAIKEY'),
+    'gemini' => [
+        'key' => env('GEMINIKEY'),
     ],
 
 ];

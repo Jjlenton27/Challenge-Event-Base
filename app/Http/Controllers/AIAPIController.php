@@ -10,13 +10,22 @@ class AIAPIController extends Controller{
     public function AskAI (Request $request){
         $userMsg = $request->input('msg');
 
-//https://laracasts.com/series/fun-with-openai-and-laravel/episodes/1
+        //https://laravel.com/docs/12.x/http-client
+        //https://laravel.com/docs/12.x/responses#json-responses
+        //https://ai.google.dev/gemini-api/docs/quickstart#rest
 
-        $response = Http::withToken(config('services.openai.key'))->post('https://api.openai.com/v1/responses', [
-            "model" => "gpt-4.1",
-            "input" => $userMsg,
+        $response = Http::withHeaders([
+                "x-goog-api-key" => config('services.gemini.key')
+            ])->post('https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent', [
+                "contents" => [
+                    "parts" =>[
+                        "text" => "Please describe a suit of gothic armour"//$userMsg,
+                    ],
+                ],
         ])->json();
 
+        //var_dump($response["candidates"]);
         dd($response);
+        dd($response["candidates"][0]);
     }
 }
