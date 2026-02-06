@@ -14,4 +14,8 @@ Route::get('dashboard', function () {
     return Inertia::render('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('askAI', function () {
+    return Inertia::render('askAI');
+})->middleware(['auth', 'verified'])->name('askAI');
+
 require __DIR__.'/settings.php';
